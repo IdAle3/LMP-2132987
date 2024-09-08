@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Usuario</title>
+    <title>CRUD CON FLASK-PYTHON</title>
     <style>
         h1 {
             margin-bottom: 20px;
@@ -38,6 +38,42 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        thead {
+            border-bottom: 2px solid #007BFF;
+        }
+
     </style>
 </head>
 <body>
@@ -51,5 +87,30 @@
 
         <input type="submit" value="Enviar">
     </form>
+    <h1>Lista de Usuarios</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.idnombre }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>
+                <a href="/editar/{{ usuario.idnombre }}">Editar</a> | 
+                <a href="/eliminar/{{ usuario.idnombre }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -21,7 +21,8 @@ class Usuario(db.Model):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    usuarios = Usuario.query.all()  
+    return render_template('index.html', usuarios=usuarios)
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -34,6 +35,26 @@ def submit():
         db.session.commit()
 
         return redirect(url_for('home'))
+
+@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+def editar(id):
+    usuario = Usuario.query.get_or_404(id)
+
+    if request.method == 'POST':
+        usuario.nombre = request.form['nombre']
+        usuario.apellido = request.form['apellido']
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('editar.html', usuario=usuario)
+
+@app.route('/eliminar/<int:id>')
+def eliminar(id):
+    usuario = Usuario.query.get_or_404(id)
+    db.session.delete(usuario)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
 
