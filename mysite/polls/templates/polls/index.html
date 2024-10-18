@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de encuestas</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .question-list {
+            list-style-type: none; 
+            padding: 0;
+        }
+
+        .question-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .question-item:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-link {
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .question-link:hover {
+            color: #0056b3;
+        }
+
+        .no-polls-message {
+            font-size: 16px;
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    {% if latest_question_list %}
+        <ul class="question-list">
+        {% for question in latest_question_list %}
+            <li class="question-item">
+                <a href="/polls/{{ question.id }}/" class="question-link">{{ question.question_text }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-polls-message">No hay encuestas disponibles.</p>
+    {% endif %}
+</body>
+</html>
