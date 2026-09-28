@@ -98,7 +98,7 @@ python manage.py runserver
 
 Una vez iniciado el servidor, la aplicación puede visualizarse desde el navegador utilizando la dirección local indicada por Django.
 
-## 📚 Sobre el proyecto
+##  Sobre el proyecto
 
 Este repositorio forma parte de mi portafolio académico y representa parte de mi aprendizaje en el desarrollo de aplicaciones utilizando tecnologías modernas de programación.
 
